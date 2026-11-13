@@ -148,7 +148,10 @@ def main() -> None:
         ax.set_xticks(shots)
         ax.grid(alpha=0.25, linewidth=0.6)
         ax.set_title(title, fontsize=11)
-    axes[0].legend(fontsize=7.6, frameon=False, loc="lower right")
+    axes[0].legend(fontsize=7.8, frameon=True, framealpha=0.92, loc="center right",
+                   borderpad=0.6, handlelength=2.0)
+    for ax in axes:
+        ax.set_ylim(ax.get_ylim()[0] - 2, ax.get_ylim()[1] + 1.5)
     fig.tight_layout()
     os.makedirs(os.path.dirname(args.fig) or ".", exist_ok=True)
     fig.savefig(args.fig, dpi=300, facecolor="white")
