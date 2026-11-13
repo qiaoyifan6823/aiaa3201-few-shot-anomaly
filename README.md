@@ -12,7 +12,7 @@ from a single machine, with or without a GPU.
 
 | Part | Method | What it is |
 |---|---|---|
-| 1 | `part1_template.py` | aligned template difference (`\|ΔRGB\|`, `\|ΔGray\|`, `1−SSIM`) + threshold calibration |
+| 1 | `part1_template.py` | aligned template difference (`\|ΔRGB\|`, `\|ΔGray\|`, `1−SSIM`) + threshold calibration; three reference-aggregation strategies (`min` / `best` / `median`) |
 | 2 | `part2_extract.py` + `part2_score.py` | DINOv2 ViT-S/14 @448 patch features + nearest-neighbour memory bank (AnomalyDINO-style) |
 | 3 | (hook) | multi-layer / multi-scale feature fusion — see `--layer` note at the bottom |
 
@@ -129,6 +129,17 @@ Outputs:
 * `results/summary.csv` — long table, one row per run
 * `figures/part1|part2/*.png` — overlay of the anomaly map on the input image
 * `refs/*.json` — the exact reference filenames, reused by Part 1, Part 2 and Part 3
+
+## Part 1 variants (ablation)
+
+`part1_template.py --strategy {min,best,median}` controls how a test image is compared with the
+reference set: per-pixel minimum over references, the single closest reference, or a pixel-wise
+median template. `--per-ref-align` additionally re-aligns the test image to every reference.
+
+Measured (6 categories, 3 seeds): `min` is the best of the three on image AUROC (78.3 at 8-shot
+vs 75.3 / 73.9), `median` is better on pixel AUROC at high shots (75.6 vs 74.0), and per-reference
+alignment adds ≈0.5 point for ≈4x the cost. The classical baseline's real bottleneck is the
+representation, not the aggregation or the alignment -- see `FAILURE_ANALYSIS.md`.
 
 ## Deliberate deviations from the official AnomalyDINO
 

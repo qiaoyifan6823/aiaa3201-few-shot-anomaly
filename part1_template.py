@@ -4,8 +4,12 @@ Pipeline (per category, per shot, per seed):
 
     reference images --(ECC affine to canonical template)--> aligned refs
     test image       --(ECC affine to canonical template)--> aligned test
-    diff  = mean( |dRGB|, |dGray|, 1 - SSIM )   taken as the per-pixel minimum
-            over the reference set  ("closest template" in image space)
+    diff  = mean( |dRGB|, |dGray|, 1 - SSIM )  computed against the reference
+            set with one of three aggregation strategies:
+              min    - per-pixel minimum over all references (v1, kept for comparison)
+              best   - the single reference whose whole-image residual is smallest
+                       ("compare with the closest template", as the brief asks)
+              median - the pixel-wise median reference image (robust template)
     diff  = Gaussian smoothing + morphological open/close
     image score = mean of the top 1% pixels of the diff map
     OK/NG threshold = 95th percentile of the first 20 normal training images
@@ -78,6 +82,39 @@ def diff_map(a_rgb: np.ndarray, a_gray: np.ndarray, b_rgb: np.ndarray, b_gray: n
     return d.astype(np.float32)
 
 
+def build_template(ref_data):
+    """Pixel-wise median of the aligned reference images."""
+    rgb = np.median(np.stack([r[0] for r in ref_data], axis=0), axis=0)
+    gray = np.median(np.stack([r[1] for r in ref_data], axis=0), axis=0)
+    return rgb.astype(np.float32), gray.astype(np.float32)
+
+
+def aggregate_diff(test_rgb, test_gray, ref_data, strategy: str, template=None,
+                   per_ref_align=False, size=448) -> np.ndarray:
+    """Anomaly map of one test image against the reference set."""
+    if strategy == "median":
+        return diff_map(test_rgb, test_gray, template[0], template[1])
+
+    if per_ref_align:
+        raw_rgb, raw_gray = test_rgb[1], test_gray[1]
+        maps = []
+        for ref_rgb, ref_gray in ref_data:
+            warp = estimate_affine(ref_gray, raw_gray)
+            maps.append(diff_map(apply_affine(raw_rgb, warp, size),
+                                 apply_affine(raw_gray, warp, size), ref_rgb, ref_gray))
+    else:
+        maps = [diff_map(test_rgb[0], test_gray[0], r[0], r[1]) for r in ref_data]
+    if strategy == "min":
+        best = maps[0]
+        for d in maps[1:]:
+            best = np.minimum(best, d)
+        return best
+    if strategy == "best":
+        means = [float(d.mean()) for d in maps]
+        return maps[int(np.argmin(means))]
+    raise ValueError(f"unknown strategy: {strategy}")
+
+
 def load_mask(path: str | None, size: int) -> np.ndarray:
     if path is None or not os.path.exists(path):
         return np.zeros((size, size), np.uint8)
@@ -123,6 +160,8 @@ def run_category(args, category: str) -> None:
         tests.append({
             "rgb": apply_affine(rgb, warp, args.size),
             "gray": apply_affine(gray, warp, args.size),
+            "rgb_raw": rgb,
+            "gray_raw": gray,
             "label": split.labels[idx],
             "mask": load_mask(split.masks[idx], args.size),
             "path": split.test[idx],
@@ -137,7 +176,7 @@ def run_category(args, category: str) -> None:
         rgb = load_rgb(path, args.size)
         gray = to_gray(rgb)
         warp = estimate_affine(canonical_gray, gray) if args.align else None
-        calib.append((apply_affine(rgb, warp, args.size), apply_affine(gray, warp, args.size)))
+        calib.append((apply_affine(rgb, warp, args.size), apply_affine(gray, warp, args.size), rgb, gray))
 
     for shot in args.shots:
         for seed in args.seeds:
@@ -152,22 +191,22 @@ def run_category(args, category: str) -> None:
                 warp = estimate_affine(canonical_gray, gray) if args.align else None
                 ref_data.append((apply_affine(rgb, warp, args.size), apply_affine(gray, warp, args.size)))
 
+            template = build_template(ref_data) if args.strategy == "median" else None
+
             maps, scores = [], []
             for t in tests:
-                best = None
-                for ref_rgb, ref_gray in ref_data:
-                    d = diff_map(t["rgb"], t["gray"], ref_rgb, ref_gray)
-                    best = d if best is None else np.minimum(best, d)
-                maps.append(best)
-                scores.append(topk_score(best, args.topk))
+                d = aggregate_diff((t["rgb"], t["rgb_raw"]), (t["gray"], t["gray_raw"]),
+                                   ref_data, args.strategy, template,
+                                   args.per_ref_align, args.size)
+                maps.append(d)
+                scores.append(topk_score(d, args.topk))
 
             calib_scores = []
-            for c_rgb, c_gray in calib:
-                best = None
-                for ref_rgb, ref_gray in ref_data:
-                    d = diff_map(c_rgb, c_gray, ref_rgb, ref_gray)
-                    best = d if best is None else np.minimum(best, d)
-                calib_scores.append(topk_score(best, args.topk))
+            for c_rgb, c_gray, c_raw_rgb, c_raw_gray in calib:
+                d = aggregate_diff((c_rgb, c_raw_rgb), (c_gray, c_raw_gray),
+                                   ref_data, args.strategy, template,
+                                   args.per_ref_align, args.size)
+                calib_scores.append(topk_score(d, args.topk))
             threshold = float(np.percentile(calib_scores, 95))
 
             pred = [1 if s >= threshold else 0 for s in scores]
@@ -185,10 +224,12 @@ def run_category(args, category: str) -> None:
                 "n_test": len(labels),
                 "size": args.size,
                 "align": bool(args.align),
+                "strategy": args.strategy,
+                "per_ref_align": bool(args.per_ref_align),
                 "topk_frac": args.topk,
                 "references": [os.path.basename(p) for p in refs],
             }
-            save_result(args.out, "part1_template", category, shot, seed, result)
+            save_result(args.out, args.method_name, category, shot, seed, result)
             print(f"[{category}] shot={shot} seed={seed} "
                   f"img_auroc={result['image_auroc']:.4f} px_auroc={result['pixel_auroc']:.4f} "
                   f"thr={threshold:.4f} ({time.time() - t0:.1f}s)")
@@ -218,11 +259,20 @@ def main() -> None:
     ap.add_argument("--pixel-stride", type=int, default=1, help=">1 subsamples pixels (memory)")
     ap.add_argument("--limit", type=int, default=0, help="cap test images per category (smoke test)")
     ap.add_argument("--no-align", dest="align", action="store_false")
+    ap.add_argument("--per-ref-align", action="store_true",
+                    help="re-align the test image to every reference (slower, more faithful)")
+    ap.add_argument("--strategy", default="best", choices=["min", "best", "median"],
+                    help="how a test image is compared with the reference set")
+    ap.add_argument("--method-name", default="",
+                    help="results sub-folder (default: part1_template_<strategy>)")
     ap.add_argument("--examples", type=int, default=2, help="number of overlay PNGs per category")
     ap.add_argument("--examples-dir", default="figures/part1")
     args = ap.parse_args()
 
     args.refs = os.path.abspath(args.refs)
+    if not args.method_name:
+        args.method_name = (f"part1_template_{args.strategy}"
+                            + ("_aligned" if args.per_ref_align else ""))
     os.makedirs(args.out, exist_ok=True)
     for cat in args.cats:
         run_category(args, cat)
