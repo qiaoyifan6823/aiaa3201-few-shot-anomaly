@@ -7,6 +7,8 @@ data/*.tar
 features/
 refs/
 results/
-figures/
+figures/*
+!figures/pipeline.png
+!figures/make_pipeline.py
 *.npz
 third_party/
