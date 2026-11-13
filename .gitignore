@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+data/VisA/
+data/VisA_pytorch/
+data/*.tar
+features/
+refs/
+results/
+figures/
+*.npz
+third_party/
