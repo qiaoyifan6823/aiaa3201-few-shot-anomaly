@@ -6,65 +6,65 @@ Protocol: 1-class split, 6 categories, 1/2/4/8 references, seeds 0/1/2, DINOv2 V
 
 ## Image AUROC (%)
 
-| shot | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) |
-|---|---|---|---|---|
-| 1-shot | 71.7 ± 1.8 | 71.7 ± 1.8 | 71.7 ± 1.8 | 91.7 ± 0.2 |
-| 2-shot | 74.8 ± 2.0 | 72.7 ± 2.0 | 73.3 ± 2.0 | 93.6 ± 0.4 |
-| 4-shot | 76.5 ± 0.7 | 74.5 ± 0.6 | 74.5 ± 0.8 | 94.5 ± 0.2 |
-| 8-shot | 78.3 ± 0.4 | 75.3 ± 0.9 | 73.9 ± 0.9 | 95.3 ± 0.3 |
+| shot | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) | Part 2 · AnomalyDINO (official) |
+|---|---|---|---|---|---|
+| 1-shot | 71.7 ± 1.8 | 71.7 ± 1.8 | 71.7 ± 1.8 | 91.7 ± 0.2 | 92.8 ± 1.4 |
+| 2-shot | 74.8 ± 2.0 | 72.7 ± 2.0 | 73.3 ± 2.0 | 93.6 ± 0.4 | 94.3 ± 1.7 |
+| 4-shot | 76.5 ± 0.7 | 74.5 ± 0.6 | 74.5 ± 0.8 | 94.5 ± 0.2 | 95.7 ± 0.9 |
+| 8-shot | 78.3 ± 0.4 | 75.3 ± 0.9 | 73.9 ± 0.9 | 95.3 ± 0.3 | 96.6 ± 0.2 |
 
 ## Pixel AUROC (%)
 
-| shot | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) |
-|---|---|---|---|---|
-| 1-shot | 72.9 ± 0.3 | 72.9 ± 0.3 | 72.9 ± 0.3 | 96.5 ± 0.5 |
-| 2-shot | 73.4 ± 0.5 | 73.0 ± 0.4 | 74.8 ± 0.1 | 97.3 ± 0.2 |
-| 4-shot | 73.7 ± 0.3 | 73.3 ± 0.4 | 75.6 ± 0.2 | 97.8 ± 0.1 |
-| 8-shot | 74.0 ± 0.3 | 73.5 ± 0.4 | 75.6 ± 0.3 | 98.0 ± 0.1 |
+| shot | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) | Part 2 · AnomalyDINO (official) |
+|---|---|---|---|---|---|
+| 1-shot | 72.9 ± 0.3 | 72.9 ± 0.3 | 72.9 ± 0.3 | 96.5 ± 0.5 | 97.7 ± 0.0 |
+| 2-shot | 73.4 ± 0.5 | 73.0 ± 0.4 | 74.8 ± 0.1 | 97.3 ± 0.2 | 97.9 ± 0.0 |
+| 4-shot | 73.7 ± 0.3 | 73.3 ± 0.4 | 75.6 ± 0.2 | 97.8 ± 0.1 | 98.1 ± 0.0 |
+| 8-shot | 74.0 ± 0.3 | 73.5 ± 0.4 | 75.6 ± 0.3 | 98.0 ± 0.1 | 98.2 ± 0.0 |
 
 ## Per-category image AUROC (%) — 1-shot
 
-| category | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) |
-|---|---|---|---|---|
-| candle | 70.9 | 70.9 | 70.9 | 90.9 |
-| capsules | 69.0 | 69.0 | 69.0 | 89.8 |
-| cashew | 78.1 | 78.1 | 78.1 | 88.7 |
-| chewinggum | 76.8 | 76.8 | 76.8 | 96.2 |
-| fryum | 70.8 | 70.8 | 70.8 | 89.5 |
-| pipe_fryum | 64.9 | 64.9 | 64.9 | 94.9 |
+| category | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) | Part 2 · AnomalyDINO (official) |
+|---|---|---|---|---|---|
+| candle | 70.9 | 70.9 | 70.9 | 90.9 | 87.3 |
+| capsules | 69.0 | 69.0 | 69.0 | 89.8 | 98.7 |
+| cashew | 78.1 | 78.1 | 78.1 | 88.7 | 85.1 |
+| chewinggum | 76.8 | 76.8 | 76.8 | 96.2 | 98.2 |
+| fryum | 70.8 | 70.8 | 70.8 | 89.5 | 95.6 |
+| pipe_fryum | 64.9 | 64.9 | 64.9 | 94.9 | 91.8 |
 
 ## Per-category image AUROC (%) — 2-shot
 
-| category | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) |
-|---|---|---|---|---|
-| candle | 73.9 | 71.9 | 73.9 | 92.0 |
-| capsules | 69.5 | 69.1 | 70.0 | 92.1 |
-| cashew | 82.0 | 79.0 | 78.9 | 92.3 |
-| chewinggum | 80.1 | 78.3 | 78.1 | 96.9 |
-| fryum | 74.1 | 71.7 | 73.8 | 92.0 |
-| pipe_fryum | 69.0 | 66.1 | 65.2 | 96.3 |
+| category | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) | Part 2 · AnomalyDINO (official) |
+|---|---|---|---|---|---|
+| candle | 73.9 | 71.9 | 73.9 | 92.0 | 88.7 |
+| capsules | 69.5 | 69.1 | 70.0 | 92.1 | 99.2 |
+| cashew | 82.0 | 79.0 | 78.9 | 92.3 | 88.9 |
+| chewinggum | 80.1 | 78.3 | 78.1 | 96.9 | 98.6 |
+| fryum | 74.1 | 71.7 | 73.8 | 92.0 | 97.0 |
+| pipe_fryum | 69.0 | 66.1 | 65.2 | 96.3 | 93.5 |
 
 ## Per-category image AUROC (%) — 4-shot
 
-| category | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) |
-|---|---|---|---|---|
-| candle | 71.5 | 67.2 | 72.2 | 92.5 |
-| capsules | 67.8 | 70.1 | 68.5 | 92.5 |
-| cashew | 90.4 | 87.7 | 84.1 | 93.7 |
-| chewinggum | 82.7 | 80.2 | 80.2 | 96.9 |
-| fryum | 76.6 | 73.9 | 74.9 | 93.5 |
-| pipe_fryum | 70.4 | 67.7 | 67.0 | 97.8 |
+| category | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) | Part 2 · AnomalyDINO (official) |
+|---|---|---|---|---|---|
+| candle | 71.5 | 67.2 | 72.2 | 92.5 | 90.4 |
+| capsules | 67.8 | 70.1 | 68.5 | 92.5 | 99.1 |
+| cashew | 90.4 | 87.7 | 84.1 | 93.7 | 93.5 |
+| chewinggum | 82.7 | 80.2 | 80.2 | 96.9 | 98.8 |
+| fryum | 76.6 | 73.9 | 74.9 | 93.5 | 97.4 |
+| pipe_fryum | 70.4 | 67.7 | 67.0 | 97.8 | 94.8 |
 
 ## Per-category image AUROC (%) — 8-shot
 
-| category | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) |
-|---|---|---|---|---|
-| candle | 75.3 | 71.8 | 71.6 | 93.4 |
-| capsules | 66.6 | 68.2 | 67.3 | 93.4 |
-| cashew | 93.7 | 88.0 | 83.2 | 95.3 |
-| chewinggum | 83.8 | 81.9 | 80.9 | 97.2 |
-| fryum | 76.5 | 71.7 | 73.3 | 94.6 |
-| pipe_fryum | 73.8 | 70.1 | 67.3 | 97.6 |
+| category | Part 1 · min over refs (v1) | Part 1 · closest template | Part 1 · median template | Part 2 · patch-NN (ours) | Part 2 · AnomalyDINO (official) |
+|---|---|---|---|---|---|
+| candle | 75.3 | 71.8 | 71.6 | 93.4 | 92.1 |
+| capsules | 66.6 | 68.2 | 67.3 | 93.4 | 98.9 |
+| cashew | 93.7 | 88.0 | 83.2 | 95.3 | 95.0 |
+| chewinggum | 83.8 | 81.9 | 80.9 | 97.2 | 98.9 |
+| fryum | 76.5 | 71.7 | 73.3 | 94.6 | 98.2 |
+| pipe_fryum | 73.8 | 70.1 | 67.3 | 97.6 | 96.4 |
 
 ## Part 1 at the calibrated OK/NG threshold (6-category mean)
 

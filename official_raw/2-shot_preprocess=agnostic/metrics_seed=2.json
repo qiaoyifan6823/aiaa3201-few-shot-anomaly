@@ -1,0 +1,56 @@
+{
+    "candle": {
+        "seg_AUPRO": 0.9512799048145021,
+        "seg_AUROC": 0.9799463525292835,
+        "seg_F1": 0.33817607676584704,
+        "classification_AUROC": 0.9319,
+        "classification_AP": 0.9362338154069528,
+        "classification_F1": 0.8737864077669903
+    },
+    "capsules": {
+        "seg_AUPRO": 0.9438009764935505,
+        "seg_AUROC": 0.9490468758726694,
+        "seg_F1": 0.46736425393714026,
+        "classification_AUROC": 0.9898333333333333,
+        "classification_AP": 0.9943333796550307,
+        "classification_F1": 0.9696969696969697
+    },
+    "cashew": {
+        "seg_AUPRO": 0.9730460010820019,
+        "seg_AUROC": 0.9919063077348783,
+        "seg_F1": 0.5941421959944221,
+        "classification_AUROC": 0.9268,
+        "classification_AP": 0.9635032697949584,
+        "classification_F1": 0.8899521531100477
+    },
+    "chewinggum": {
+        "seg_AUPRO": 0.9522708664001047,
+        "seg_AUROC": 0.9950515512935592,
+        "seg_F1": 0.6456294181620446,
+        "classification_AUROC": 0.9874,
+        "classification_AP": 0.9943269314259688,
+        "classification_F1": 0.9696969696969697
+    },
+    "fryum": {
+        "seg_AUPRO": 0.9393362506821522,
+        "seg_AUROC": 0.9627596477029405,
+        "seg_F1": 0.45707824830738714,
+        "classification_AUROC": 0.9736,
+        "classification_AP": 0.9883728542377452,
+        "classification_F1": 0.9489795918367346
+    },
+    "pipe_fryum": {
+        "seg_AUPRO": 0.9789454126657798,
+        "seg_AUROC": 0.9918122526329198,
+        "seg_F1": 0.5764544085401865,
+        "classification_AUROC": 0.9716,
+        "classification_AP": 0.9853748295792344,
+        "classification_F1": 0.9435897435897437
+    },
+    "mean_au_pro": 0.956446568689682,
+    "mean_segmentation_au_roc": 0.9784204979610417,
+    "mean_segmentation_f1": 0.5131407669511713,
+    "mean_classification_au_roc": 0.9635222222222222,
+    "mean_classification_ap": 0.9770241800166483,
+    "mean_classification_f1": 0.9326169726162427
+}

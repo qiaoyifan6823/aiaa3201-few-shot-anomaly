@@ -1,0 +1,56 @@
+{
+    "candle": {
+        "seg_AUPRO": 0.9491422248782005,
+        "seg_AUROC": 0.9793269912826691,
+        "seg_F1": 0.3212184341657048,
+        "classification_AUROC": 0.8588,
+        "classification_AP": 0.8657714619706423,
+        "classification_F1": 0.7942583732057417
+    },
+    "capsules": {
+        "seg_AUPRO": 0.9472917789848941,
+        "seg_AUROC": 0.9511400852206056,
+        "seg_F1": 0.48127153914238907,
+        "classification_AUROC": 0.9921666666666666,
+        "classification_AP": 0.9953506719970856,
+        "classification_F1": 0.9658536585365853
+    },
+    "cashew": {
+        "seg_AUPRO": 0.9593684688969142,
+        "seg_AUROC": 0.9910812356535472,
+        "seg_F1": 0.5815226645339389,
+        "classification_AUROC": 0.9263999999999999,
+        "classification_AP": 0.9664104384548002,
+        "classification_F1": 0.8944723618090452
+    },
+    "chewinggum": {
+        "seg_AUPRO": 0.9544595732123033,
+        "seg_AUROC": 0.9954066553435681,
+        "seg_F1": 0.6592371311116753,
+        "classification_AUROC": 0.9882,
+        "classification_AP": 0.9948936562370222,
+        "classification_F1": 0.9696969696969697
+    },
+    "fryum": {
+        "seg_AUPRO": 0.9354167433665489,
+        "seg_AUROC": 0.963096797472971,
+        "seg_F1": 0.4411380035171923,
+        "classification_AUROC": 0.9672,
+        "classification_AP": 0.9858493064930509,
+        "classification_F1": 0.9393939393939393
+    },
+    "pipe_fryum": {
+        "seg_AUPRO": 0.974074396835211,
+        "seg_AUROC": 0.9906447877216726,
+        "seg_F1": 0.5374801195127558,
+        "classification_AUROC": 0.9345999999999999,
+        "classification_AP": 0.9660870488828841,
+        "classification_F1": 0.9223300970873787
+    },
+    "mean_au_pro": 0.9532921976956786,
+    "mean_segmentation_au_roc": 0.9784494254491722,
+    "mean_segmentation_f1": 0.5036446486639427,
+    "mean_classification_au_roc": 0.9445611111111111,
+    "mean_classification_ap": 0.9623937640059143,
+    "mean_classification_f1": 0.9143342332882766
+}

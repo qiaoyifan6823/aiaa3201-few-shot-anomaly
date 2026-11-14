@@ -1,0 +1,56 @@
+{
+    "candle": {
+        "seg_AUPRO": 0.9500379094097541,
+        "seg_AUROC": 0.9806761091398573,
+        "seg_F1": 0.34182382115843224,
+        "classification_AUROC": 0.8619,
+        "classification_AP": 0.8716527283734666,
+        "classification_F1": 0.788177339901478
+    },
+    "capsules": {
+        "seg_AUPRO": 0.9448326836980361,
+        "seg_AUROC": 0.9539005622514929,
+        "seg_F1": 0.47895699028192057,
+        "classification_AUROC": 0.9955,
+        "classification_AP": 0.9973973961536932,
+        "classification_F1": 0.97
+    },
+    "cashew": {
+        "seg_AUPRO": 0.9557081722185662,
+        "seg_AUROC": 0.9927352845903732,
+        "seg_F1": 0.6258975645465088,
+        "classification_AUROC": 0.9326000000000001,
+        "classification_AP": 0.9684550174364202,
+        "classification_F1": 0.9035532994923858
+    },
+    "chewinggum": {
+        "seg_AUPRO": 0.951032048904356,
+        "seg_AUROC": 0.9953882044639476,
+        "seg_F1": 0.6598961123663553,
+        "classification_AUROC": 0.9898,
+        "classification_AP": 0.9953696128870252,
+        "classification_F1": 0.9696969696969697
+    },
+    "fryum": {
+        "seg_AUPRO": 0.939961710516721,
+        "seg_AUROC": 0.9684826029975987,
+        "seg_F1": 0.47529468302385497,
+        "classification_AUROC": 0.9738,
+        "classification_AP": 0.9884601396048224,
+        "classification_F1": 0.9484536082474226
+    },
+    "pipe_fryum": {
+        "seg_AUPRO": 0.9715210414541372,
+        "seg_AUROC": 0.9902589086594686,
+        "seg_F1": 0.5275907579731695,
+        "classification_AUROC": 0.9096,
+        "classification_AP": 0.9512230160467885,
+        "classification_F1": 0.8975609756097561
+    },
+    "mean_au_pro": 0.9521822610335952,
+    "mean_segmentation_au_roc": 0.9802402786837897,
+    "mean_segmentation_f1": 0.5182433215583736,
+    "mean_classification_au_roc": 0.9438666666666666,
+    "mean_classification_ap": 0.9620929850837027,
+    "mean_classification_f1": 0.9129070321580021
+}

@@ -1,0 +1,56 @@
+{
+    "candle": {
+        "seg_AUPRO": 0.9505378970698496,
+        "seg_AUROC": 0.9793913877659929,
+        "seg_F1": 0.3302537333353106,
+        "classification_AUROC": 0.8807,
+        "classification_AP": 0.892664752964513,
+        "classification_F1": 0.8075117370892019
+    },
+    "capsules": {
+        "seg_AUPRO": 0.9459565265967356,
+        "seg_AUROC": 0.9482488560093449,
+        "seg_F1": 0.47439411142868326,
+        "classification_AUROC": 0.9913333333333334,
+        "classification_AP": 0.9949481165672152,
+        "classification_F1": 0.9705882352941176
+    },
+    "cashew": {
+        "seg_AUPRO": 0.9513071709345771,
+        "seg_AUROC": 0.9920231550930567,
+        "seg_F1": 0.6000765600392562,
+        "classification_AUROC": 0.9042,
+        "classification_AP": 0.9580120367969751,
+        "classification_F1": 0.8808290155440415
+    },
+    "chewinggum": {
+        "seg_AUPRO": 0.9488471672341272,
+        "seg_AUROC": 0.995600476530896,
+        "seg_F1": 0.6719045333617741,
+        "classification_AUROC": 0.9842,
+        "classification_AP": 0.9930672464689352,
+        "classification_F1": 0.964824120603015
+    },
+    "fryum": {
+        "seg_AUPRO": 0.933723406781792,
+        "seg_AUROC": 0.9570533239359785,
+        "seg_F1": 0.3818771051712312,
+        "classification_AUROC": 0.9566000000000001,
+        "classification_AP": 0.9810367387673884,
+        "classification_F1": 0.9270833333333334
+    },
+    "pipe_fryum": {
+        "seg_AUPRO": 0.975997519857965,
+        "seg_AUROC": 0.98951502732896,
+        "seg_F1": 0.510008435681503,
+        "classification_AUROC": 0.9506,
+        "classification_AP": 0.9754365048465428,
+        "classification_F1": 0.9207920792079208
+    },
+    "mean_au_pro": 0.951061614745841,
+    "mean_segmentation_au_roc": 0.9769720377773715,
+    "mean_segmentation_f1": 0.49475241316962637,
+    "mean_classification_au_roc": 0.9446055555555555,
+    "mean_classification_ap": 0.9658608994019282,
+    "mean_classification_f1": 0.9119380868452716
+}

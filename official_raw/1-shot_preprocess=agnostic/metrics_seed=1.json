@@ -1,0 +1,56 @@
+{
+    "candle": {
+        "seg_AUPRO": 0.9445453871592241,
+        "seg_AUROC": 0.9777802633373268,
+        "seg_F1": 0.3527630346550109,
+        "classification_AUROC": 0.8616,
+        "classification_AP": 0.8761984351291745,
+        "classification_F1": 0.789237668161435
+    },
+    "capsules": {
+        "seg_AUPRO": 0.9416508552403976,
+        "seg_AUROC": 0.9481428436769419,
+        "seg_F1": 0.4447703730864424,
+        "classification_AUROC": 0.9883333333333334,
+        "classification_AP": 0.9933998903217374,
+        "classification_F1": 0.9547738693467336
+    },
+    "cashew": {
+        "seg_AUPRO": 0.9693909766540343,
+        "seg_AUROC": 0.989188326963638,
+        "seg_F1": 0.5298738025380889,
+        "classification_AUROC": 0.8642,
+        "classification_AP": 0.9263836229330525,
+        "classification_F1": 0.8608695652173913
+    },
+    "chewinggum": {
+        "seg_AUPRO": 0.9468437754777506,
+        "seg_AUROC": 0.9955150092320283,
+        "seg_F1": 0.6530471222861218,
+        "classification_AUROC": 0.9778,
+        "classification_AP": 0.9900020330130468,
+        "classification_F1": 0.9500000000000001
+    },
+    "fryum": {
+        "seg_AUPRO": 0.9303870654380303,
+        "seg_AUROC": 0.9625803672381567,
+        "seg_F1": 0.4409156354986124,
+        "classification_AUROC": 0.9576,
+        "classification_AP": 0.9812096877237277,
+        "classification_F1": 0.9207920792079208
+    },
+    "pipe_fryum": {
+        "seg_AUPRO": 0.9770270583463418,
+        "seg_AUROC": 0.9866456354548364,
+        "seg_F1": 0.46019481291387254,
+        "classification_AUROC": 0.919,
+        "classification_AP": 0.9558438048846455,
+        "classification_F1": 0.8962264150943395
+    },
+    "mean_au_pro": 0.9516408530526298,
+    "mean_segmentation_au_roc": 0.9766420743171547,
+    "mean_segmentation_f1": 0.4802607968296915,
+    "mean_classification_au_roc": 0.9280888888888889,
+    "mean_classification_ap": 0.9538395790008974,
+    "mean_classification_f1": 0.8953165995046368
+}

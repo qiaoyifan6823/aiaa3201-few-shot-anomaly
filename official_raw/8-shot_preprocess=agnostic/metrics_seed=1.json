@@ -1,0 +1,56 @@
+{
+    "candle": {
+        "seg_AUPRO": 0.9525303511802876,
+        "seg_AUROC": 0.9830817070529558,
+        "seg_F1": 0.3714813176082877,
+        "classification_AUROC": 0.9122999999999999,
+        "classification_AP": 0.918088365292475,
+        "classification_F1": 0.8401826484018265
+    },
+    "capsules": {
+        "seg_AUPRO": 0.9545614675544936,
+        "seg_AUROC": 0.9572343894663462,
+        "seg_F1": 0.4916517064005134,
+        "classification_AUROC": 0.9928333333333333,
+        "classification_AP": 0.9960575176055626,
+        "classification_F1": 0.9743589743589743
+    },
+    "cashew": {
+        "seg_AUPRO": 0.9612709942324329,
+        "seg_AUROC": 0.9932024410203244,
+        "seg_F1": 0.627273078557904,
+        "classification_AUROC": 0.9492,
+        "classification_AP": 0.9745335561487024,
+        "classification_F1": 0.9175257731958764
+    },
+    "chewinggum": {
+        "seg_AUPRO": 0.9568453105343888,
+        "seg_AUROC": 0.9956670865299329,
+        "seg_F1": 0.6592912186793412,
+        "classification_AUROC": 0.992,
+        "classification_AP": 0.9962836696045653,
+        "classification_F1": 0.9751243781094527
+    },
+    "fryum": {
+        "seg_AUPRO": 0.9431208578777946,
+        "seg_AUROC": 0.9705103444183139,
+        "seg_F1": 0.49276422542774534,
+        "classification_AUROC": 0.9836,
+        "classification_AP": 0.9928469999072833,
+        "classification_F1": 0.97
+    },
+    "pipe_fryum": {
+        "seg_AUPRO": 0.9756825478162655,
+        "seg_AUROC": 0.9909923689913471,
+        "seg_F1": 0.5550741487158939,
+        "classification_AUROC": 0.9812,
+        "classification_AP": 0.9903914879551412,
+        "classification_F1": 0.9519230769230769
+    },
+    "mean_au_pro": 0.9573352548659438,
+    "mean_segmentation_au_roc": 0.9817813895798699,
+    "mean_segmentation_f1": 0.5329226158982809,
+    "mean_classification_au_roc": 0.9685222222222222,
+    "mean_classification_ap": 0.9780335994189548,
+    "mean_classification_f1": 0.9381858084982011
+}

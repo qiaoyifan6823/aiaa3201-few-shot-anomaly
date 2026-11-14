@@ -130,6 +130,23 @@ Outputs:
 * `figures/part1|part2/*.png` — overlay of the anomaly map on the input image
 * `refs/*.json` — the exact reference filenames, reused by Part 1, Part 2 and Part 3
 
+## Official vs re-implementation (Part 2)
+
+Both were run with the same 6 categories, 1/2/4/8 references and seeds 0/1/2
+(`results/part2_official` is produced from the official repo's `metrics_seed=*.json`).
+
+| shot | ours (image) | official (image) | ours (pixel) | official (pixel) |
+|---|---|---|---|---|
+| 1 | 91.7 | 92.8 | 96.5 | 97.7 |
+| 2 | 93.6 | 94.3 | 97.3 | 97.9 |
+| 4 | 94.5 | 95.7 | 97.8 | 98.1 |
+| 8 | 95.3 | 96.6 | 98.0 | 98.2 |
+
+The official pipeline is 1.0-1.3 points better on image AUROC because it adds PCA background
+masking and reference rotation augmentation. Both are documented in `REPRO_NOTES_autodl.md`
+together with the two patches the reproduction needed (local DINOv2 hub cache, stride-4 pixel
+metric). Our implementation is therefore a faithful simplified version, not a re-run.
+
 ## Part 1 variants (ablation)
 
 `part1_template.py --strategy {min,best,median}` controls how a test image is compared with the

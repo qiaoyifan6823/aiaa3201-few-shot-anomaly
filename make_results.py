@@ -60,7 +60,7 @@ def main() -> None:
     ap.add_argument("--out", default="results")
     ap.add_argument("--methods", nargs="+",
                     default=["part1_template_min", "part1_template_best",
-                             "part1_template_median", "part2_patchnn"])
+                             "part1_template_median", "part2_patchnn", "part2_official"])
     ap.add_argument("--md", default="RESULTS.md")
     ap.add_argument("--fig", default="figures/auroc_vs_shot.png")
     args = ap.parse_args()

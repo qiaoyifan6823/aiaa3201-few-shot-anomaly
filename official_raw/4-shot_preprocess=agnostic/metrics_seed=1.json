@@ -1,0 +1,56 @@
+{
+    "candle": {
+        "seg_AUPRO": 0.9544701933415966,
+        "seg_AUROC": 0.9823357029194277,
+        "seg_F1": 0.3490992441119281,
+        "classification_AUROC": 0.9329999999999999,
+        "classification_AP": 0.9381729083134556,
+        "classification_F1": 0.8811881188118812
+    },
+    "capsules": {
+        "seg_AUPRO": 0.9517874311768961,
+        "seg_AUROC": 0.9532692017777661,
+        "seg_F1": 0.5038697928522651,
+        "classification_AUROC": 0.9849999999999999,
+        "classification_AP": 0.9918327454139277,
+        "classification_F1": 0.9591836734693877
+    },
+    "cashew": {
+        "seg_AUPRO": 0.9690174654115399,
+        "seg_AUROC": 0.9926342070083095,
+        "seg_F1": 0.6051101214142897,
+        "classification_AUROC": 0.9328,
+        "classification_AP": 0.96476879093101,
+        "classification_F1": 0.91
+    },
+    "chewinggum": {
+        "seg_AUPRO": 0.9542911776974072,
+        "seg_AUROC": 0.9954679928770711,
+        "seg_F1": 0.6574051189497704,
+        "classification_AUROC": 0.9853999999999999,
+        "classification_AP": 0.9935765771184181,
+        "classification_F1": 0.9603960396039604
+    },
+    "fryum": {
+        "seg_AUPRO": 0.9432687292739652,
+        "seg_AUROC": 0.9673844059248012,
+        "seg_F1": 0.46823370531522573,
+        "classification_AUROC": 0.9803999999999999,
+        "classification_AP": 0.9908849011752834,
+        "classification_F1": 0.9435897435897437
+    },
+    "pipe_fryum": {
+        "seg_AUPRO": 0.9749870134563049,
+        "seg_AUROC": 0.991475047300205,
+        "seg_F1": 0.5603424990546162,
+        "classification_AUROC": 0.9648,
+        "classification_AP": 0.9821326690706557,
+        "classification_F1": 0.9371980676328503
+    },
+    "mean_au_pro": 0.9579703350596184,
+    "mean_segmentation_au_roc": 0.9804277596345967,
+    "mean_segmentation_f1": 0.5240100802830159,
+    "mean_classification_au_roc": 0.9635666666666666,
+    "mean_classification_ap": 0.976894765337125,
+    "mean_classification_f1": 0.9319259405179704
+}
