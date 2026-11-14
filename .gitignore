@@ -12,3 +12,4 @@ figures/*
 !figures/make_pipeline.py
 *.npz
 third_party/
+official_raw/**/*.png
