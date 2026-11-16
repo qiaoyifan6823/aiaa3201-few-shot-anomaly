@@ -158,6 +158,12 @@ vs 75.3 / 73.9), `median` is better on pixel AUROC at high shots (75.6 vs 74.0),
 alignment adds ≈0.5 point for ≈4x the cost. The classical baseline's real bottleneck is the
 representation, not the aggregation or the alignment -- see `FAILURE_ANALYSIS.md`.
 
+## Efficiency
+
+See `EFFICIENCY.md`: per-image runtime and peak memory for every stage, with the device stated
+(the main grid runs on Apple MPS/CPU, the official reproduction on an RTX 4090). The brief asks for
+runtime and peak GPU memory "on the same device" and says a CUDA GPU is recommended, not required.
+
 ## Deliberate deviations from the official AnomalyDINO
 
 Being explicit about these matters for the report:
