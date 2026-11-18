@@ -137,22 +137,30 @@ def main() -> None:
         return
 
     fig, axes = plt.subplots(1, 2, figsize=(9.6, 3.8))
-    colors = ["#9AA5B1", "#3F6BA8", "#C07616", "#2E7D32", "#7B4EA3"]
-    marks = ["o", "s", "^", "D", "v"]
+    STYLE = {
+        "part1_template_min": ("#9AA5B1", "o", "-", 1.6),
+        "part2_patchnn": ("#2E7D32", "o", "-", 1.5),
+        "part2_official": ("#BF6A02", "^", "--", 1.5),
+        "p3_l12_448": ("#7A8AA0", "s", ":", 1.3),
+        "p3_l6912_448": ("#7B4EA3", "v", "-", 1.4),
+        "p3_l12_multi": ("#1F9E8F", "D", "--", 1.4),
+        "p3_all": ("#1F3864", "*", "-", 2.4),
+    }
     for ax, key, title in ((axes[0], "image_auroc", "Image AUROC"),
                            (axes[1], "pixel_auroc", "Pixel AUROC")):
         for i, m in enumerate(args.methods):
             xs = [s for s in shots if s in summ[m]]
             ys = [100 * summ[m][s][f"{key}_mean"] for s in xs]
             es = [100 * summ[m][s][f"{key}_std"] for s in xs]
-            ax.errorbar(xs, ys, yerr=es, marker=marks[i % len(marks)], color=colors[i % len(colors)],
-                        capsize=3, linewidth=1.8, markersize=5, label=label(m))
+            col, mk, ls, lw = STYLE.get(m, ("#888888", "o", "-", 1.4))
+            ax.errorbar(xs, ys, yerr=es, marker=mk, color=col, linestyle=ls, linewidth=lw,
+                        capsize=2.5, markersize=6 if m == "p3_all" else 4.5, label=label(m))
         ax.set_xlabel("references (shots)")
         ax.set_ylabel(f"{title} (%)")
         ax.set_xticks(shots)
         ax.grid(alpha=0.25, linewidth=0.6)
         ax.set_title(title, fontsize=11)
-    axes[0].legend(fontsize=7.8, frameon=True, framealpha=0.92, loc="center right",
+    axes[0].legend(fontsize=7.2, frameon=True, framealpha=0.92, loc="center right",
                    borderpad=0.6, handlelength=2.0)
     for ax in axes:
         ax.set_ylim(ax.get_ylim()[0] - 2, ax.get_ylim()[1] + 1.5)

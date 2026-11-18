@@ -117,7 +117,7 @@ for x, (t, s) in zip(XS, CELLS2):
     cell(x, ROW["p2"], t, s, C2, "#F1F8F1")
 
 # ---------------------------------------------------------------- Part 3
-row_title(ROW["p3"], "Part 3", "our improvement (planned)", C3)
+row_title(ROW["p3"], "Part 3", "our improvement (implemented)", C3)
 CELLS3 = [
     ("Blocks 6 / 9 / 12", "+ 448 / 672 scales"),
     ("Per-layer maps", "distance per layer"),
