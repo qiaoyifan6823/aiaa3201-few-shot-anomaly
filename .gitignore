@@ -13,3 +13,4 @@ figures/*
 *.npz
 third_party/
 official_raw/**/*.png
+.pylibs/

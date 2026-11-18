@@ -25,6 +25,10 @@ LABELS = {
     "part1_template_median": "Part 1 · median template",
     "part2_patchnn": "Part 2 · patch-NN (ours)",
     "part2_official": "Part 2 · AnomalyDINO (official)",
+    "p3_l12_448": "Part 3 · 448, layer 12 (base)",
+    "p3_l6912_448": "Part 3 · 448, layers 6+9+12",
+    "p3_l12_multi": "Part 3 · 448+672, layer 12",
+    "p3_all": "Part 3 · 448+672, layers 6+9+12",
 }
 CAT_ORDER = ["candle", "capsules", "cashew", "chewinggum", "fryum", "pipe_fryum"]
 
@@ -59,8 +63,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", default="results")
     ap.add_argument("--methods", nargs="+",
-                    default=["part1_template_min", "part1_template_best",
-                             "part1_template_median", "part2_patchnn", "part2_official"])
+                    default=["part1_template_min", "part2_patchnn", "part2_official",
+                             "p3_l12_448", "p3_l6912_448", "p3_l12_multi", "p3_all"])
     ap.add_argument("--md", default="RESULTS.md")
     ap.add_argument("--fig", default="figures/auroc_vs_shot.png")
     args = ap.parse_args()
