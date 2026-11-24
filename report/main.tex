@@ -129,6 +129,16 @@ it with multiple instances and varying poses, and MVTec AD 2
 Segment Anything \cite{kirillov2023sam} is the natural backbone for the
 foreground-masking direction we discuss as future work.
 
+\textbf{Evaluation practice.} The two published protocols differ in what they
+emphasise. MVTec AD and its successor \cite{bergmann2019mvtec,hecklerkram2026mvtec2}
+report image-level and pixel-level metrics side by side and require a
+threshold chosen without test labels, while VisA \cite{zou2022spot} stresses
+multi-instance scenes and re-uses the MVTec folder layout. We follow the same
+convention: a single threshold calibrated on held-out normal images, image AUROC
+as the primary number, and pixel AUROC over all test images including the normal
+ones whose mask is empty. EfficientAD \cite{batzner2024efficientad} additionally
+argues for reporting latency, which we do in Table~\ref{tab:efficiency}.
+
 % ---------------------------------------------------------------------------
 \section{Method}
 
@@ -212,7 +222,9 @@ D_{\mathrm{fused}}=\frac{1}{|\mathcal{B}||\mathcal{S}|}
 with $\mathcal{B}\subseteq\{6,9,12\}$ and $\mathcal{S}\subseteq\{448,672\}$.
 Raw distances are comparable across blocks because every token is L2-normalised,
 so no per-image re-normalisation (which would break cross-image comparability)
-is needed. The image score and threshold are unchanged, which keeps the
+is needed. We deliberately avoid learned fusion weights: with six categories and
+no defective training samples there is nothing to fit them on, and a weighted
+combination would simply move the tuning problem to the validation split. The image score and threshold are unchanged, which keeps the
 comparison with Part 2 controlled. Figure~\ref{fig:pipeline} summarises the
 three parts.
 
@@ -323,6 +335,18 @@ category, part of the evidence. We therefore treat masking as a
 \emph{when-to-apply} question rather than a fixed preprocessing step, and leave
 it to future work.
 
+The advantage of our fusion is concentrated in the low-shot regime, and the
+reason is structural rather than a matter of tuning. With one reference image
+the memory bank contains a single view of the object, so any descriptor that
+happens to be weak for that view limits the whole system; averaging distance
+maps from three blocks and two scales behaves like a small ensemble of
+descriptors, which is exactly what a single reference cannot provide. As
+references grow the bank covers more of the normal variation and the ensemble
+effect saturates, which is why the gap narrows to $0.2$ points at eight-shot.
+This also means the improvement costs nothing at test time: all distance maps
+are computed from features that were already extracted, and the additional
+arithmetic is a sum over at most six arrays of size $448\times448$.
+
 \subsection{Qualitative results}
 
 Figure~\ref{fig:comparison} shows the same two test images under the baseline
@@ -373,6 +397,18 @@ drops from $0.121$ to $0.046$, a $62\%$ reduction, with correlation coefficient
 $0.986$). The failure is a property of the representation: a pixel-wise residual
 measures how similar two photographs are overall, and a defect that occupies
 about $1\%$ of the pixels is invisible next to a global appearance offset.
+
+\textbf{Threats to validity.} Three choices bound what our numbers can claim.
+First, the six categories were fixed by the brief, so nothing here says how the
+fusion behaves on the four PCB categories of VisA, which are structurally
+harder. Second, our pixel AUROC is computed at the prediction resolution
+($448\times448$) rather than at the native mask resolution, which flatters
+methods with coarse maps; since every method is measured the same way the
+ranking is unaffected, but the absolute values are not comparable to papers that
+evaluate at native resolution. Third, three reference selections per shot give
+standard deviations of one to two points, so differences smaller than that
+should be read as ties --- which is the case for our fused model against the
+official implementation at eight-shot.
 
 \input{tables/efficiency.tex}
 
