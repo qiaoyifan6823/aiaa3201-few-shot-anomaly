@@ -156,6 +156,19 @@ is the $95$th percentile of the calibration scores. We report image AUROC
 nearest-neighbour-resized masks and includes normal test images whose mask is
 empty.
 
+Table~\ref{tab:dataset} lists the six categories. Two properties of the data
+matter for everything that follows. First, the categories differ by a factor of
+two in the number of normal images available (900 for \emph{candle}, 453 for
+\emph{chewinggum}), so the same shot count does not mean the same amount of
+evidence. Second, the defects are \emph{small}: the median annotated region
+covers $0.15$--$0.53\%$ of the image and the 90th percentile stays below $2\%$
+for five of the six categories. A method that reduces a localised defect to a
+single number therefore has to work with a handful of pixels, and a pixel-wise
+comparison has to separate them from a much larger and noisier background ---
+which is precisely the failure we quantify in Section~\ref{sec:failure}.
+
+\input{tables/dataset.tex}
+
 \subsection{Part 1: template difference}
 
 Each image is resized to $448\times448$ and converted to grey. We estimate an
@@ -378,9 +391,12 @@ gap to the baseline does not close with more references.}
 \end{figure*}
 
 \subsection{Why does the pixel-wise baseline fail?}
+\label{sec:failure}
 
 On \emph{chewinggum} the baseline reaches a pixel AUROC of $0.40$, i.e.\ below
-chance, while patch retrieval reaches $0.97$ on exactly the same masks. We
+chance, while patch retrieval reaches $0.97$ on exactly the same masks. The
+median defect on this category covers $0.53\%$ of the image
+(Table~\ref{tab:dataset}), i.e.\ about one part in two hundred. We
 checked that this is not an artefact of the annotations: the masks are the same
 objects that the patch method localises almost perfectly. We then measured, for
 six anomalous test images, the mean residual inside and outside the ground-truth

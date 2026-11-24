@@ -147,6 +147,45 @@ def gain_table():
     return "\n".join(lines)
 
 
+def dataset_table():
+    """Per-category dataset statistics, including the defect-mask area distribution."""
+    import sys
+    import cv2
+    sys.path.insert(0, ROOT)
+    from common import CATEGORIES, build_split
+
+    rows = []
+    for cat in CATEGORIES:
+        split = build_split(os.path.join(ROOT, "data/VisA_pytorch/1cls"), cat)
+        n_train = len(split.train)
+        n_good = sum(1 for y in split.labels if y == 0)
+        n_bad = sum(1 for y in split.labels if y == 1)
+        areas = []
+        for mp in split.masks:
+            if not mp:
+                continue
+            m = cv2.imread(mp, cv2.IMREAD_GRAYSCALE)
+            areas.append((m > 0).mean() * 100)
+        rows.append((cat, n_train, n_good, n_bad, float(np.median(areas)),
+                     float(np.percentile(areas, 90))))
+
+    lines = ["\\begin{table}[t]", "\\centering", "\\small",
+             "\\setlength{\\tabcolsep}{4pt}",
+             "\\begin{tabular}{lcccccc}", "\\toprule",
+             "Category & train & test & test & median & 90th \\\\",
+             " & (good) & (good) & (defect) & mask & pct. \\\\", "\\midrule"]
+    for cat, a, b, c, med, p90 in rows:
+        lines.append(f"{cat.replace('_', ' ')} & {a} & {b} & {c} & {med:.2f} & {p90:.2f} \\\\")
+    lines += ["\\midrule",
+              f"total & {sum(r[1] for r in rows)} & {sum(r[2] for r in rows)} & {sum(r[3] for r in rows)} & & \\\\",
+              "\\bottomrule", "\\end{tabular}",
+              "\\caption{The six VisA categories used in this paper. Mask columns give the area of the "
+              "ground-truth defect region as a percentage of the image; the last two columns are the median and "
+              "the 90th percentile over the 100 anomalous test images of each category.}",
+              "\\label{tab:dataset}", "\\end{table}"]
+    return "\n".join(lines)
+
+
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "main_image.tex"), "w") as fh:
@@ -163,4 +202,6 @@ if __name__ == "__main__":
         fh.write(efficiency_table())
     with open(os.path.join(OUT, "gain.tex"), "w") as fh:
         fh.write(gain_table())
+    with open(os.path.join(OUT, "dataset.tex"), "w") as fh:
+        fh.write(dataset_table())
     print("tables written to", OUT)

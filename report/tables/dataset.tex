@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+Category & train & test & test & median & 90th \\
+ & (good) & (good) & (defect) & mask & pct. \\
+\midrule
+candle & 900 & 100 & 100 & 0.15 & 0.72 \\
+capsules & 542 & 60 & 100 & 0.15 & 1.65 \\
+cashew & 450 & 50 & 100 & 0.15 & 0.66 \\
+chewinggum & 453 & 50 & 100 & 0.53 & 1.92 \\
+fryum & 450 & 50 & 100 & 0.21 & 15.83 \\
+pipe fryum & 450 & 50 & 100 & 0.16 & 1.87 \\
+\midrule
+total & 3245 & 360 & 600 & & \\
+\bottomrule
+\end{tabular}
+\caption{The six VisA categories used in this paper. Mask columns give the area of the ground-truth defect region as a percentage of the image; the last two columns are the median and the 90th percentile over the 100 anomalous test images of each category.}
+\label{tab:dataset}
+\end{table}
