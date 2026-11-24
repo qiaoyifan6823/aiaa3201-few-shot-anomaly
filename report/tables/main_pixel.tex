@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{9pt}
+\begin{tabular}{lcccc}
+\toprule
+Configuration & 1-shot & 2-shot & 4-shot & 8-shot \\
+\midrule
+Part 1: template difference & 72.9$\pm$0.3 & 73.4$\pm$0.5 & 73.7$\pm$0.3 & 74.0$\pm$0.3 \\
+Part 2: patch-NN, our implementation & 96.5$\pm$0.5 & 97.3$\pm$0.2 & 97.8$\pm$0.1 & 98.0$\pm$0.1 \\
+Part 2: AnomalyDINO, official code & 97.7$\pm$0.0 & 97.9$\pm$0.0 & 98.1$\pm$0.0 & 98.2$\pm$0.0 \\
+\midrule
+Part 3: 448, block 12 (control) & 96.5$\pm$0.6 & 97.2$\pm$0.2 & 97.8$\pm$0.1 & 97.9$\pm$0.1 \\
+Part 3: 448, blocks 6+9+12 & 97.8$\pm$0.2 & 98.2$\pm$0.0 & 98.4$\pm$0.0 & 98.5$\pm$0.0 \\
+Part 3: 448+672, block 12 & 97.3$\pm$0.5 & 97.9$\pm$0.1 & 98.3$\pm$0.0 & 98.4$\pm$0.1 \\
+Part 3: 448+672, blocks 6+9+12 & 98.1$\pm$0.2 & 98.5$\pm$0.1 & 98.7$\pm$0.0 & 98.8$\pm$0.0 \\
+\bottomrule
+\end{tabular}
+\caption{Pixel-level AUROC (\%), computed at $448\times448$ and averaged over the six categories.}
+\label{tab:pixel}
+\end{table*}

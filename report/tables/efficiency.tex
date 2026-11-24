@@ -1,0 +1,17 @@
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{llcc}
+\toprule
+Stage & Device & Per image & Peak memory \\
+\midrule
+Part 1 template difference, 4 refs (incl.\ ECC) & Apple M-series CPU & 57.7\,ms & 2.0\,GB RSS \\
+Part 2 feature extraction, ViT-S/14 @448 & Apple M-series MPS & 37\,ms & 2.0\,GB unified \\
+Part 2 retrieval, 1 reference & Apple M-series MPS & 0.8\,ms & -- \\
+Part 2 retrieval, 8 references & Apple M-series MPS & 3.2\,ms & -- \\
+Official AnomalyDINO inference & RTX 4090 24\,GB & 46\,ms & 0.6\,GB observed \\
+\bottomrule
+\end{tabular}
+\caption{Runtime and memory per image, on the device each experiment was run. Feature extraction is cached once (4,205 images, $\approx$4 min) and is excluded from the retrieval rows.}
+\label{tab:efficiency}
+\end{table*}

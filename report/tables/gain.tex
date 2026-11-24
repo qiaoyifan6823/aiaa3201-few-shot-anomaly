@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{3}{c}{1-shot} & \multicolumn{3}{c}{8-shot} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Category & control & fused & $\Delta$ & control & fused & $\Delta$ \\
+\midrule
+candle & 91.0 & 93.1 & +2.1 & 93.4 & 94.9 & +1.5 \\
+capsules & 87.6 & 92.0 & +4.3 & 92.8 & 94.5 & +1.6 \\
+cashew & 86.3 & 95.5 & +9.2 & 96.6 & 97.5 & +1.0 \\
+chewinggum & 94.8 & 96.6 & +1.8 & 97.1 & 97.6 & +0.5 \\
+fryum & 93.8 & 93.6 & -0.2 & 95.0 & 97.2 & +2.2 \\
+pipe fryum & 94.8 & 97.5 & +2.7 & 98.0 & 98.4 & +0.4 \\
+\bottomrule
+\end{tabular}
+\caption{Per-category image AUROC (\%) of the fused model against the single-block, single-scale control (block 12 @448). Fusion helps five of six categories at both shot counts; the gain is largest where the control is weakest (cashew) and shrinks with more references.}
+\label{tab:gain}
+\end{table*}
