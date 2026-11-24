@@ -141,9 +141,9 @@ def gain_table():
         lines.append(f"{cat.replace('_', ' ')} & " + " & ".join(cells) + " \\\\")
     lines += ["\\bottomrule", "\\end{tabular}",
               "\\caption{Per-category image AUROC (\\%) of the fused model against the single-block, "
-              "single-scale control (block 12 @448). Fusion helps five of six categories at both shot "
-              "counts; the gain is largest where the control is weakest (cashew) and shrinks with more "
-              "references.}", "\\label{tab:gain}", "\\end{table*}"]
+              "single-scale control (block 12 @448). Fusion helps five of six categories at 1-shot and all six "
+              "at 8-shot; the gain is largest where the control is weakest (cashew) and shrinks as "
+              "references grow.}", "\\label{tab:gain}", "\\end{table*}"]
     return "\n".join(lines)
 
 
