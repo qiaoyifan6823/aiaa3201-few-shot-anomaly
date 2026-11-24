@@ -14,3 +14,6 @@ figures/*
 third_party/
 official_raw/**/*.png
 .pylibs/
+report/overleaf_upload/
+report/build/
+report/P2_report_overleaf.zip

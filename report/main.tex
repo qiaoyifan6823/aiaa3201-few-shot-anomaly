@@ -7,15 +7,12 @@
 % ---------------------------------------------------------------------------
 \documentclass[10pt,twocolumn,letterpaper]{article}
 
-\usepackage[review]{cvpr}
-\usepackage{times}
-\usepackage{epsfig}
+\usepackage[review]{cvpr}   % comment out for the camera-ready / arXiv version
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{xcolor}
-\usepackage{subcaption}
 
 \usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
 \definecolor{citecolor}{rgb}{0.13,0.42,0.62}
@@ -248,6 +245,14 @@ reference, twenty points above the eight-shot baseline, and improves steadily
 to $95.3$. Third, our fusion pushes the method to $94.4$ and $96.4$, which is
 above the official implementation at one, two and four references and $0.2$
 points below it at eight.
+
+Table~\ref{tab:percat} breaks the four-shot result down by category. The
+baseline is weakest exactly where the object layout changes between shots:
+\emph{capsules} ($67.8$) and \emph{pipe fryum} ($70.4$), the two categories with
+multiple or repositioned instances, while the well-aligned \emph{cashew} already
+reaches $90.4$. Patch retrieval lifts every category above $92.5$ and the fused
+model above $94$; the remaining weakness of the baseline is therefore a property
+of the pixel-wise comparison, not of one hard category.
 
 \input{tables/per_category.tex}
 
