@@ -55,13 +55,10 @@ demo = gr.Interface(
     title="Few-Shot Industrial Visual Anomaly Detection",
     description=("Group 31 · AIAA 3201. The model sees four defect-free references of the "
                  "selected category (DINOv2 ViT-S/14, blocks 6/9/12 at 448 + blocks 6/12 at 672, "
-                 "fused). Score ≥ calibrated threshold → NG."),
-    examples=[[p, c] for c, p in [
-        ("chewinggum", "samples/chewinggum_ng.jpg"),
-        ("chewinggum", "samples/chewinggum_ok.jpg"),
-        ("candle", "samples/candle_ng.jpg"),
-        ("fryum", "samples/fryum_ng.jpg"),
-    ] if os.path.exists(os.path.join(HERE, p))],
+                 "fused). Score ≥ calibrated threshold → NG.\n\n"
+                 "样例图片 / Sample images: `demo/samples/` "
+                 "(chewinggum_ok.jpg, chewinggum_ng.jpg, candle_ok.jpg, candle_ng.jpg, fryum_ng.jpg)"),
+    flagging_mode="never",
 )
 
 if __name__ == "__main__":
