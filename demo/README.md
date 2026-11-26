@@ -23,8 +23,14 @@ PyTorch. On an Apple-silicon laptop this installs in a couple of minutes.)
 **Interactive (what was recorded):**
 
 ```bash
-python demo/app.py          # open http://127.0.0.1:7860
+sh demo/run.sh              # open http://127.0.0.1:7860
 ```
+
+The interface has two ways in: upload any product image (the box on the left) or
+press one of the four **one-click sample** buttons, which score the bundled
+images instantly - no upload, no clearing, so a screen recording has no dead
+time. The three reference banks are preloaded at start-up, so every click returns
+in well under a second.
 
 **Single image from the command line:**
 
