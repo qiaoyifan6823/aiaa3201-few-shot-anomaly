@@ -59,6 +59,20 @@ python check_env.py                      # prints device, ms/image and estimated
 
 If HuggingFace is slow, export `HF_ENDPOINT=https://hf-mirror.com` before running.
 
+## Model weights
+
+No weights are trained or shipped. Both learning-based parts use the pretrained,
+frozen **`facebook/dinov2-small`** (ViT-S/14, 22M parameters) from the Hugging Face
+Hub; `transformers` downloads and caches it on first use (~88 MB):
+
+```bash
+python -c "from transformers import Dinov2Model; Dinov2Model.from_pretrained('facebook/dinov2-small')"
+```
+
+To run offline, set `HF_HOME` to a directory that already contains the cache. The
+demo assets (`demo/assets/*.npz`, 23 MB per category) contain the reference patch
+features and the calibrated thresholds, so the demo needs no download at all.
+
 ## Data
 
 ```bash
@@ -188,6 +202,29 @@ representation, not the aggregation or the alignment -- see `FAILURE_ANALYSIS.md
 See `EFFICIENCY.md`: per-image runtime and peak memory for every stage, with the device stated
 (the main grid runs on Apple MPS/CPU, the official reproduction on an RTX 4090). The brief asks for
 runtime and peak GPU memory "on the same device" and says a CUDA GPU is recommended, not required.
+
+## Results and visual outputs
+
+| File | What it contains |
+|---|---|
+| `RESULTS.md` | the full table set: image AUROC, pixel AUROC, per-category numbers, ablations, official reproduction |
+| `FAILURE_ANALYSIS.md` | the chewing-gum case study (residual inside vs outside the mask, per-reference re-alignment control) |
+| `EFFICIENCY.md` | runtime and memory per stage on the laptop and on the rented 4090 |
+| `figures/pipeline.png` | the three-part pipeline diagram |
+| `figures/comparison.png` | baseline vs patch retrieval on the same test images |
+| `figures/auroc_vs_shot.png` | AUROC as a function of the number of references, all methods |
+| `demo/outputs/` | 15 three-panel demo results (input, heatmap, overlay with the verdict) |
+
+## Interactive demo
+
+```bash
+sh demo/run.sh          # http://127.0.0.1:7860
+```
+
+Upload a product image or use one of the four one-click samples; the interface
+returns the anomaly score, the OK/NG decision and a pixel-level heatmap. See
+`demo/README.md`. The recorded demonstration is submitted separately inside
+`anomaly_demo.zip`.
 
 ## Deliberate deviations from the official AnomalyDINO
 
