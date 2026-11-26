@@ -17,3 +17,8 @@ official_raw/**/*.png
 report/overleaf_upload/
 report/build/
 report/P2_report_overleaf.zip
+!demo/assets/*.npz
+!demo/outputs/*.png
+.DS_Store
+report/*.pdf
+demo/out/
